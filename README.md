@@ -18,4 +18,4 @@ A super simple scaffolding for Statamic themes. Includes browserify for modulari
 
 - Gulp
 - Browserify
-- [Swell SCSS Framework](http://github.com/octopuscreative/scss-util)
+- [Swell](http://github.com/octopuscreative/scss-util)
