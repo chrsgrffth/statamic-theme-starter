@@ -10,4 +10,4 @@ A super simple scaffolding for Statamic themes. Includes browserify for modulari
 2. Then, rename the `theme_name` folder to the desired name of your theme.
 3. Copy the theme folder into the `site/themes` folder of your Statamic installation.
 4. `cd` into the theme directory and `npm install`
-5. Run `gulp && gulp watch` to build the theme `js` and `css` file and begin watching for changes.
+5. Run `gulp` to build the theme `js` and `css` file and begin watching for changes.
