@@ -1,11 +1,21 @@
 {
   "private": true,
+  "dependencies": {
+  },
   "devDependencies": {
+    "browserify": "^13.0.1",
+    "browserify-resolutions": "^1.1.0",
+    "coffeeify": "^2.0.1",
     "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-coffeeify": "^0.1.8",
     "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.3.1",
     "gulp-sass-glob": "^1.0.6",
-    "jquery": "^2.2.3"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

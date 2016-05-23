@@ -4,14 +4,20 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     sassGlob = require('gulp-sass-glob'),
     concat = require('gulp-concat'),
-    coffeeify = require('gulp-coffeeify'),
+    browserify = require('browserify'),
+    coffeeify = require('coffeeify'),
+    uglify = require('gulp-uglify'),
+    notify = require('gulp-notify'),
+    resolutions = require('browserify-resolutions'),
+    buff = require('vinyl-buffer'), // to transform the browserify results into a 'stream'
+    source = require('vinyl-source-stream'),
+    sourcemaps  = require('gulp-sourcemaps'),
 
     // This must match the name of the theme folder.
-    theme = 'theme_name';
-
+    theme = 'ink';
 
 gulp.task('styles', function () {
-  return gulp.src('sass/init.scss')
+  gulp.src('./sass/' + theme + '.scss')
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(concat(theme + '.css'))
@@ -19,11 +25,24 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function() {
-  gulp.src('coffee/**/*.coffee')
-    .pipe(coffeeify())
-    .pipe(concat(theme + '.js'))
-    .pipe(gulp.dest('js/'));
-});
+  browserify({
+    entries: ['./coffee/ink.coffee'],
+    debug: true,
+    extensions: ['coffee'],
+    transform: ['coffeeify']
+  })
+  .bundle()
+  .pipe(source(theme + '.js'))
+  .pipe(buff())
+  .pipe(sourcemaps.init({
+    loadMaps: true,
+    debug: true
+  }))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('./'))
+  .pipe(gulp.dest('./js'))
+  .pipe(notify(theme + '.js compiled.'));
+})
 
 gulp.task('default', ['styles', 'scripts'], function() {
   gulp.watch('sass/**', ['styles']);
