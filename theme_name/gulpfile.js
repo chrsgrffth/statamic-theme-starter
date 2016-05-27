@@ -26,7 +26,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('styles', function () {
-  gulp.src('./sass/' + theme + '.scss')
+  gulp.src('./sass/init.scss')
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(concat(theme + '.css'))
@@ -35,7 +35,7 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function() {
   browserify({
-    entries: ['./coffee/' + theme + '.coffee'],
+    entries: ['./coffee/init.coffee'],
     debug: true,
     extensions: ['coffee'],
     transform: ['coffeeify']
