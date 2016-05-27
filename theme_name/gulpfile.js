@@ -1,3 +1,11 @@
+// Statamic Starter Theme.
+// This gulpfile will run browserify, uglify the JS, and process the SCSS. To
+// get it going:
+// 
+// 1. Find and replace all instances of "theme_name" with the name of your theme.
+// 2. Run `npm install` to install the dependences.
+// 3. Run `gulp` to build and watch your files.
+
 'use strict';
 
 var gulp = require('gulp'),
@@ -14,7 +22,8 @@ var gulp = require('gulp'),
     sourcemaps  = require('gulp-sourcemaps'),
 
     // This must match the name of the theme folder.
-    theme = 'ink';
+    theme = 'theme_name';
+
 
 gulp.task('styles', function () {
   gulp.src('./sass/' + theme + '.scss')
@@ -26,7 +35,7 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function() {
   browserify({
-    entries: ['./coffee/ink.coffee'],
+    entries: ['./coffee/' + theme + '.coffee'],
     debug: true,
     extensions: ['coffee'],
     transform: ['coffeeify']
